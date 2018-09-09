@@ -1,10 +1,10 @@
 1. Define class:
 	1.1. Properties:
-		- unique_code -> string -> validation start with letter and 5 digits;
-		- holder_name -> pointer to string;
+		- unique_code -> string -> validation start with letter and 5 digits (Done);
+		- holder_name -> pointer to string (Done);
 		- income -> list of doubles;
 		- outcome -> list of doubles;
-		- construct;
+		- construct (Done);
 		- destuctor;
 		- predefine << (maybe in the main class);
 	1.2. Validate the unique id;
