@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <list>
 #include <cstdlib>
 using namespace std;
@@ -15,13 +16,12 @@ using namespace std;
 class BankAccount {
 	// Bank Account properties
 	private:
-		char unique_code[6];
+		char *unique_code = new char[6];
 		char *holder_name;
 		list<double> income;
 		list<double> outcome;
 
 	void create_unique_code() {
-		unsigned seed;
 		srand(time(0));
 		this->unique_code[0] =(char)(65 + rand() % 25); // Get unique letter from A to Z
 
@@ -65,4 +65,17 @@ class BankAccount {
 		char *get_unique_code() {
 			return this->unique_code;
 		}
+
+	// Ovveride << to serialize and write Bank Account object in file
+	friend std::ostream & operator << (std::ostream &out_file, BankAccount &acc) {
+		out_file << acc.get_unique_code() << " - " << acc.get_holder_name() << endl;
+		return out_file;
+	}
+
+	// Ovveride >> to read Bank Account object from file
+	friend std::istream & operator >> (std::istream &in_file, BankAccount &acc) {
+		in_file >> acc.unique_code;
+		in_file >> acc.holder_name;
+		return in_file;
+	}
 };
