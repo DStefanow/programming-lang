@@ -1,0 +1,18 @@
+1. Define class:
+	1.1. Properties:
+		- unique_code -> string -> validation start with letter and 5 digits;
+		- holder_name -> pointer to string;
+		- income -> list of doubles;
+		- outcome -> list of doubles;
+		- construct;
+		- destuctor;
+		- predefine << (maybe in the main class);
+	1.2. Validate the unique id;
+
+2. Create file with objects in it (o init);
+
+3. Get all holders with more than one account;
+
+4. Get the difference between income and outcome;
+
+5. Wrote in file the info about the accounts that we withdraw or store amounts;
