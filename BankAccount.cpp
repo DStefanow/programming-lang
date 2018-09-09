@@ -21,11 +21,13 @@ class BankAccount {
 		list<double> outcome;
 
 	void create_unique_code() {
-		this->unique_code[0] = 65 + rand() % 25; // Get unique letter from A to Z;
+		unsigned seed;
+		srand(time(0));
+		this->unique_code[0] =(char)(65 + rand() % 25); // Get unique letter from A to Z
 
 		// Set unique digit from 0 to 9
-		for (char i = 0; i < 4; i++) {
-			this->unique_code[i] = rand() % 9;
+		for (char i = 1; i < 6; i++) {
+			this->unique_code[i] =(char)(48 + rand() % 9);
 		}
 	}
 
@@ -45,7 +47,7 @@ class BankAccount {
 			cout << "Created new account wih empty data." << endl;
 		}
 
-		BankAccount(char *unique_code, char *holder_name) {
+		BankAccount(char *holder_name) {
 			create_unique_code();
 			set_holder_name(holder_name);
 
