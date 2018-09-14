@@ -27,24 +27,24 @@ class BankAccount {
 		list<double> debit;
 		list<double> credit;
 
-	void create_unique_code() {
-		srand(time(0));
-		this->unique_code[0] =(char)(65 + rand() % 25); // Get unique letter from A to Z
+		void create_unique_code() {
+			srand(time(0));
+			this->unique_code[0] =(char)(65 + rand() % 25); // Get unique letter from A to Z
 
-		// Set unique digit from 0 to 9
-		for (char i = 1; i < 6; i++) {
-			this->unique_code[i] =(char)(48 + rand() % 9);
-		}
-	}
-
-	bool is_valid_holder_name(char *holder_name) {
-		if (strlen(holder_name) < 5) {
-			cout << "Holder name must be at least 5 symbols. Insert new data." << endl;
-			return false;
+			// Set unique digit from 0 to 9
+			for (char i = 1; i < 6; i++) {
+				this->unique_code[i] =(char)(48 + rand() % 9);
+			}
 		}
 
-		return true;
-	}
+		bool is_valid_holder_name(char *holder_name) {
+			if (strlen(holder_name) < 5) {
+				cout << "Holder name must be at least 5 symbols. Insert new data." << endl;
+				return false;
+			}
+
+			return true;
+		}
 
 	public:
 		// Initialize empty construct
