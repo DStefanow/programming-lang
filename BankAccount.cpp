@@ -2,6 +2,7 @@
 #include <fstream>
 #include <list>
 #include <cstdlib>
+#include <string>
 using namespace std;
 
 /**
@@ -18,8 +19,8 @@ class BankAccount {
 	private:
 		char *unique_code = new char[6];
 		char *holder_name;
-		list<double> income;
-		list<double> outcome;
+		list<double> debit;
+		list<double> credit;
 
 	void create_unique_code() {
 		srand(time(0));
@@ -69,16 +70,33 @@ class BankAccount {
 			return this->unique_code;
 		}
 
-	// Ovveride << to serialize and write Bank Account object in file
-	friend std::ostream & operator << (std::ostream &out_file, BankAccount &acc) {
-		out_file << acc.get_unique_code() << " - " << acc.get_holder_name() << endl;
-		return out_file;
-	}
+		bool create_transaction(string option, double amount) {
+			if (amount <= 0.0) {
+				return false;
+			}
 
-	// Ovveride >> to read Bank Account object from file
-	friend std::istream & operator >> (std::istream &in_file, BankAccount &acc) {
-		in_file >> acc.unique_code;
-		in_file >> acc.holder_name;
-		return in_file;
-	}
+			if (option == "insert") {
+				debit.push_back(amount);
+				return true;
+			}
+			else if (option == "withdraw") {
+				credit.push_back(amount);
+				return true;
+			}
+
+			return false;
+		}
+
+		// Ovveride << to serialize and write Bank Account object in file
+		friend std::ostream & operator << (std::ostream &out_file, BankAccount &acc) {
+			out_file << acc.get_unique_code() << " - " << acc.get_holder_name() << endl;
+			return out_file;
+		}
+
+		// Ovveride >> to read Bank Account object from file
+		friend std::istream & operator >> (std::istream &in_file, BankAccount &acc) {
+			in_file >> acc.unique_code;
+			in_file >> acc.holder_name;
+			return in_file;
+		}
 };
