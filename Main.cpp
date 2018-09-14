@@ -1,6 +1,9 @@
 #include<iostream>
 #include <fstream>
+#include <string>
 #include "core.h"
+
+#define ACC_FILE "accounts.txt"
 
 void create_unique_code();
 void menu();
@@ -14,25 +17,11 @@ int main() {
 
 	menu();
 
-	char *name = "Dobromir Stefanov";
-	BankAccount acc(name);
-
-	ofstream out_file("accounts.txt");
-	out_file<<acc;
-	out_file.close();
-
-	BankAccount acc1;
-	ifstream in_file("accounts.txt");
-	in_file>>acc1;
-	in_file.close();
-
-	cout << "Account ID: " << acc1.get_unique_code() << endl;
-
 	return 0;
 }
 
 void menu() {
-	cout << "-- MAIN MENU --" << endl << "Pick up option: " << endl;
+	cout << "-- MAIN MENU --" << endl << "Pick up an option: " << endl;
 	cout << "1) Create new accout" << endl;
 	cout << "2) Insert amount in account by ID" << endl;
 	cout << "3) Withdraw amoount in account by ID" << endl;
@@ -60,7 +49,20 @@ void menu() {
 }
 
 void create_new_account() {
-	// TODO ..
+	char holder_name[24];
+
+	cout << "Enter holder name (max 24 symbols): ";
+
+	cin.ignore();
+	cin.getline(holder_name, sizeof(holder_name));
+
+	BankAccount *acc = new BankAccount(holder_name);
+
+	// Write the information about the current account in accounts file
+	ofstream out_file;
+	out_file.open(ACC_FILE, ofstream::out | ofstream::app);
+	out_file << *acc;
+	out_file.close();
 }
 
 void insert_ammount() {
