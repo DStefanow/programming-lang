@@ -34,7 +34,7 @@ int main() {
 void menu() {
 	cout << "-- MAIN MENU --" << endl << "Pick up option: " << endl;
 	cout << "1) Create new accout" << endl;
-	cout << "2) Insert amoount in account by ID" << endl;
+	cout << "2) Insert amount in account by ID" << endl;
 	cout << "3) Withdraw amoount in account by ID" << endl;
 	cout << "4) Get account handlers that have more than one account" << endl;
 	cout << "5) Get all bank accounts with same amount of witdraw/income ammounts in text format" << endl;
