@@ -22,6 +22,8 @@ class BankAccount {
 	private:
 		char unique_code[6];
 		char *holder_name;
+		double total_debit;
+		double total_credit;
 		list<double> debit;
 		list<double> credit;
 
