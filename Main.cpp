@@ -1,13 +1,10 @@
-#include<iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include "core.h"
 
-#define ACC_FILE "accounts.txt"
-
-void create_unique_code();
 void menu();
-void create_new_account();
+BankAccount* create_new_account();
 void insert_ammount();
 void withdraw_ammount();
 void get_account_handlers_with_more_than_one();
@@ -22,16 +19,16 @@ int main() {
 
 void menu() {
 	cout << "-- MAIN MENU --" << endl << "Pick up an option: " << endl;
-	cout << "1) Create new accout" << endl;
+	cout << "1) Create new account" << endl;
 	cout << "2) Insert amount in account by ID" << endl;
-	cout << "3) Withdraw amoount in account by ID" << endl;
+	cout << "3) Withdraw amount in account by ID" << endl;
 	cout << "4) Get account handlers that have more than one account" << endl;
-	cout << "5) Get all bank accounts with same amount of witdraw/income ammounts in text format" << endl;
+	cout << "5) Get all bank accounts with same amount of witdraw/income amounts in text format" << endl;
 	cout << "0) For Exit." << endl;
 
 	int option; // Used for user choice
 	while (1) {
-		cout << "Option (0 for exit): ";
+		cout << "Enter option (0 for exit): ";
 		cin >> option;
 
 		if (option == 0) {
@@ -48,7 +45,7 @@ void menu() {
 	}
 }
 
-void create_new_account() {
+BankAccount* create_new_account() {
 	char holder_name[24];
 
 	cout << "Enter holder name (max 24 symbols): ";
@@ -56,13 +53,7 @@ void create_new_account() {
 	cin.ignore();
 	cin.getline(holder_name, sizeof(holder_name));
 
-	BankAccount *acc = new BankAccount(holder_name);
-
-	// Write the information about the current account in accounts file
-	ofstream out_file;
-	out_file.open(ACC_FILE, ofstream::out | ofstream::app);
-	out_file << *acc;
-	out_file.close();
+	return new BankAccount(holder_name);
 }
 
 void insert_ammount() {

@@ -1,8 +1,11 @@
 #include <iostream>
-#include <fstream>
 #include <list>
 #include <cstdlib>
+#include <cstring>
 #include <string>
+
+#define ACC_FILE "accounts.txt"
+
 using namespace std;
 
 /**
@@ -17,7 +20,7 @@ using namespace std;
 class BankAccount {
 	// Bank Account properties
 	private:
-		char *unique_code = new char[6];
+		char unique_code[6];
 		char *holder_name;
 		list<double> debit;
 		list<double> credit;
@@ -33,7 +36,7 @@ class BankAccount {
 	}
 
 	bool is_valid_holder_name(char *holder_name) {
-		if (sizeof(holder_name)/sizeof(char) < 5) {
+		if (strlen(holder_name) < 5) {
 			cout << "Holder name must be at least 5 symbols. Insert new data." << endl;
 			return false;
 		}
@@ -53,6 +56,13 @@ class BankAccount {
 				create_unique_code();
 
 				cout << "Holder: " << this->holder_name << " has new Bank Account with ID: " << this->unique_code << endl;
+
+				// Write the information about the current account in accounts file
+				ofstream out_file;
+				out_file.open(ACC_FILE, ofstream::out | ofstream::app);
+				out_file << *this;
+				out_file.close();
+
 			} else {
 				delete this;
 			}
