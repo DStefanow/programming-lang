@@ -121,7 +121,8 @@ class BankAccount {
 
 		// Ovveride << to serialize and write Bank Account object in file
 		friend std::ostream & operator << (std::ostream &out_file, BankAccount &acc) {
-			out_file << acc.get_unique_code() << " - " << acc.get_holder_name() << endl;
+			out_file << acc.get_unique_code() << " - " << acc.get_holder_name() <<
+			" - " <<  acc.get_all_debit() << " - " << acc.get_all_credit() <<endl;
 			return out_file;
 		}
 
@@ -129,6 +130,8 @@ class BankAccount {
 		friend std::istream & operator >> (std::istream &in_file, BankAccount &acc) {
 			in_file >> acc.unique_code;
 			in_file >> acc.holder_name;
+			in_file >> acc.total_debit;
+			in_file >> acc.total_credit;
 			return in_file;
 		}
 };
