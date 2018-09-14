@@ -55,6 +55,8 @@ class BankAccount {
 		BankAccount(char *holder_name) {
 			if (is_valid_holder_name(holder_name)) {
 				this->holder_name = holder_name;
+				this->total_debit = 0;
+				this->total_credit = 0;
 				create_unique_code();
 
 				cout << "Holder: " << this->holder_name << " has new Bank Account with ID: " << this->unique_code << endl;
@@ -97,6 +99,24 @@ class BankAccount {
 			}
 
 			return false;
+		}
+
+		double get_all_debit() {
+			list<double>::iterator curr;
+			for (curr = debit.begin(); curr != debit.end(); ++curr) {
+				this->total_debit += *curr;
+			}
+
+			return this->total_debit;
+		}
+
+		double get_all_credit() {
+			list<double>::iterator curr;
+			for (curr = credit.begin(); curr != credit.end(); ++curr) {
+				this->total_credit += *curr;
+			}
+
+			return this->total_credit;
 		}
 
 		// Ovveride << to serialize and write Bank Account object in file
