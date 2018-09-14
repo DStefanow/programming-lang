@@ -31,14 +31,13 @@ class BankAccount {
 		}
 	}
 
-	void set_holder_name(char *holder_name) {
+	bool is_valid_holder_name(char *holder_name) {
 		if (sizeof(holder_name)/sizeof(char) < 5) {
 			cout << "Holder name must be at least 5 symbols. Insert new data." << endl;
-			delete this;
-			return;
+			return false;
 		}
 
-		this->holder_name = holder_name;
+		return true;
 	}
 
 	public:
@@ -48,10 +47,14 @@ class BankAccount {
 		}
 
 		BankAccount(char *holder_name) {
-			create_unique_code();
-			set_holder_name(holder_name);
+			if (is_valid_holder_name(holder_name)) {
+				this->holder_name = holder_name;
+				create_unique_code();
 
-			cout << "Holder: " << this->holder_name << " has new Bank Account with ID: " << this->unique_code << endl;
+				cout << "Holder: " << this->holder_name << " has new Bank Account with ID: " << this->unique_code << endl;
+			} else {
+				delete this;
+			}
 		}
 
 		~BankAccount() {
