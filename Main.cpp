@@ -26,7 +26,7 @@ void menu() {
 	cout << "3) Insert amount in account by ID" << endl;
 	cout << "4) Withdraw amount in account by ID" << endl;
 	cout << "5) Get account handlers that have more than one account" << endl;
-	cout << "6) Get all bank accounts with same amount of witdraw/income amounts in text format" << endl;
+	cout << "6) Get all bank accounts with same amount of withdraw/income amounts in text format" << endl;
 	cout << "0) For Exit." << endl;
 
 	int option; // Used for user choice
