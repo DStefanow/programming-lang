@@ -1,10 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <list>
 #include "core.h"
 
 void menu();
 BankAccount* create_new_account();
+list<BankAccount> get_all_accounts();
 void insert_ammount();
 void withdraw_ammount();
 void get_account_handlers_with_more_than_one();
@@ -54,6 +56,10 @@ BankAccount* create_new_account() {
 	cin.getline(holder_name, sizeof(holder_name));
 
 	return new BankAccount(holder_name);
+}
+
+list<BankAccount> get_all_accounts() {
+	// TODO ...
 }
 
 void insert_ammount() {
