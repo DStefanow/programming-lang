@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <list>
 #include <cstdlib>
 #include <cstring>
@@ -126,12 +127,30 @@ class BankAccount {
 			return out_file;
 		}
 
-		// Ovveride >> to read Bank Account object from file
-		friend std::istream & operator >> (std::istream &in_file, BankAccount &acc) {
-			in_file >> acc.unique_code;
-			in_file >> acc.holder_name;
-			in_file >> acc.total_debit;
-			in_file >> acc.total_credit;
-			return in_file;
+		list<BankAccount> get_all_accounts() {
+			list<BankAccount> accounts;
+			int pos = 0; // Position for the current line
+			int i = 0; // Used by the token array
+			string line = "";
+			string tokens[4];
+			string delimiter = " - "; // Delimiter in the file
+
+			ifstream in_file(ACC_FILE);
+			while (getline(in_file, line)) {
+				istringstream iss(line); // get the line as string
+
+				i = 0;
+				while ((pos = line.find(delimiter)) != string::npos) {
+					tokens[i] = line.substr(0, pos); // Add every part
+					line.erase(0, pos + delimiter.length()); // Erase to the next delimiter
+
+					i++;
+				}
+
+				tokens[i] = line; // Add the last part
+				accounts.push_back(*(new BankAccount(tokens)));
+			}
+
+			return accounts;
 		}
 };
