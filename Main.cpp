@@ -43,6 +43,7 @@ void menu() {
 			case 3: withdraw_ammount(); break;
 			case 4: get_account_handlers_with_more_than_one(); break;
 			case 5: get_account_with_same(); break;
+			default : cout << "Wrong option!\n"; break;
 		}
 	}
 }
