@@ -73,6 +73,14 @@ class BankAccount {
 			}
 		}
 
+		BankAccount(string *tokens) {
+			copy(tokens[0].begin(), tokens[0].end(), this->unique_code);
+			//this->unique_code = (char*)(tokens[0].substr(0,6)).c_str();
+			this->holder_name = (char*)tokens[1].c_str();
+			this->total_debit = atof(tokens[2].c_str());
+			this->total_credit = atof(tokens[3].c_str());
+		}
+
 		~BankAccount() {
 			cout << "Current account is destroyed!" << endl;
 		}
