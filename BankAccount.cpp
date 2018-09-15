@@ -81,9 +81,7 @@ class BankAccount {
 			this->total_credit = atof(tokens[3].c_str());
 		}
 
-		~BankAccount() {
-			cout << "Current account is destroyed!" << endl;
-		}
+		~BankAccount() { }
 
 		char *get_holder_name() {
 			return this->holder_name;
