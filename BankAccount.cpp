@@ -133,7 +133,7 @@ class BankAccount {
 			return out_file;
 		}
 
-		list<BankAccount> get_all_accounts() {
+		static list<BankAccount> get_all_accounts() {
 			list<BankAccount> accounts;
 			int pos = 0; // Position for the current line
 			int i = 0; // Used by the token array
