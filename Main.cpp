@@ -6,7 +6,7 @@
 
 void menu();
 BankAccount* create_new_account();
-list<BankAccount> get_all_accounts();
+void get_all_accounts();
 void insert_ammount();
 void withdraw_ammount();
 void get_account_handlers_with_more_than_one();
@@ -22,10 +22,11 @@ int main() {
 void menu() {
 	cout << "-- MAIN MENU --" << endl << "Pick up an option: " << endl;
 	cout << "1) Create new account" << endl;
-	cout << "2) Insert amount in account by ID" << endl;
-	cout << "3) Withdraw amount in account by ID" << endl;
-	cout << "4) Get account handlers that have more than one account" << endl;
-	cout << "5) Get all bank accounts with same amount of witdraw/income amounts in text format" << endl;
+	cout << "2) Get all accounts" << endl;
+	cout << "3) Insert amount in account by ID" << endl;
+	cout << "4) Withdraw amount in account by ID" << endl;
+	cout << "5) Get account handlers that have more than one account" << endl;
+	cout << "6) Get all bank accounts with same amount of witdraw/income amounts in text format" << endl;
 	cout << "0) For Exit." << endl;
 
 	int option; // Used for user choice
@@ -39,10 +40,11 @@ void menu() {
 
 		switch (option) {
 			case 1: create_new_account(); break;
-			case 2: insert_ammount(); break;
-			case 3: withdraw_ammount(); break;
-			case 4: get_account_handlers_with_more_than_one(); break;
-			case 5: get_account_with_same(); break;
+			case 2: get_all_accounts(); break;
+			case 3: insert_ammount(); break;
+			case 4: withdraw_ammount(); break;
+			case 5: get_account_handlers_with_more_than_one(); break;
+			case 6: get_account_with_same(); break;
 			default : cout << "Wrong option!\n"; break;
 		}
 	}
@@ -59,8 +61,8 @@ BankAccount* create_new_account() {
 	return new BankAccount(holder_name);
 }
 
-list<BankAccount> get_all_accounts() {
-	// TODO ...
+void get_all_accounts() {
+	//return BankAccount::get_all_accounts();
 }
 
 void insert_ammount() {
