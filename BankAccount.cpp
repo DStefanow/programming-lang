@@ -75,8 +75,7 @@ class BankAccount {
 
 		BankAccount(string *tokens) {
 			copy(tokens[0].begin(), tokens[0].end(), this->unique_code);
-			//this->unique_code = (char*)(tokens[0].substr(0,6)).c_str();
-			this->holder_name = (char*)tokens[1].c_str();
+			this->holder_name = (char*)(tokens[1].c_str());
 			this->total_debit = atof(tokens[2].c_str());
 			this->total_credit = atof(tokens[3].c_str());
 		}
@@ -158,5 +157,10 @@ class BankAccount {
 			}
 
 			return accounts;
+		}
+
+		void print_info() {
+			printf("Account with ID: %s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
+				this->get_unique_code(), this->get_all_debit(), this->get_all_credit());
 		}
 };
