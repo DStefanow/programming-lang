@@ -75,7 +75,10 @@ class BankAccount {
 
 		BankAccount(string *tokens) {
 			copy(tokens[0].begin(), tokens[0].end(), this->unique_code);
-			this->holder_name = (char*)(tokens[1].c_str());
+			// Copy the holder name - it's a little bit difficult procedure
+			char *ch = new char[tokens[1].length() + 1];
+			strcpy(ch, tokens[1].c_str());
+			this->holder_name = ch;
 			this->total_debit = atof(tokens[2].c_str());
 			this->total_credit = atof(tokens[3].c_str());
 		}
