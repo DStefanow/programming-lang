@@ -62,7 +62,12 @@ BankAccount* create_new_account() {
 }
 
 void get_all_accounts() {
-	//return BankAccount::get_all_accounts();
+	list<BankAccount> accounts = BankAccount::get_all_accounts();
+
+	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
+		printf("ID:%s - Holder: %s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
+			acc->get_unique_code(), acc->get_holder_name(), acc->get_all_debit(), acc->get_all_credit());
+	}
 }
 
 void insert_ammount() {
