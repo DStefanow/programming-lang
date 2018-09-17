@@ -5,7 +5,7 @@
 #include "core.h"
 
 void menu();
-BankAccount* create_new_account();
+BankAccount create_new_account();
 void get_all_accounts();
 void insert_ammount();
 void withdraw_ammount();
@@ -50,7 +50,7 @@ void menu() {
 	}
 }
 
-BankAccount* create_new_account() {
+BankAccount create_new_account() {
 	char holder_name[24];
 
 	cout << "Enter holder name (max 24 symbols): ";
@@ -58,7 +58,7 @@ BankAccount* create_new_account() {
 	cin.ignore();
 	cin.getline(holder_name, sizeof(holder_name));
 
-	return new BankAccount(holder_name);
+	return BankAccount(holder_name);
 }
 
 void get_all_accounts() {
