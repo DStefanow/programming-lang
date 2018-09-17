@@ -156,7 +156,7 @@ class BankAccount {
 				}
 
 				tokens[i] = line; // Add the last part
-				accounts.push_back(*(new BankAccount(tokens)));
+				accounts.push_back(BankAccount(tokens));
 			}
 
 			return accounts;
