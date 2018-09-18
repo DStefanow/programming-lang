@@ -93,21 +93,21 @@ class BankAccount {
 			return this->unique_code;
 		}
 
-		bool create_transaction(string option, double amount) {
+		bool insert_amount(double amount) {
 			if (amount <= 0.0) {
 				return false;
 			}
+			cout << "Going to push: " << amount << endl;
+			debit.push_back(amount);
+			return true;
+		}
 
-			if (option == "insert") {
-				debit.push_back(amount);
-				return true;
+		bool withdraw_amount(double amount) {
+			if (amount <= 0.0) {
+				return false;
 			}
-			else if (option == "withdraw") {
-				credit.push_back(amount);
-				return true;
-			}
-
-			return false;
+			credit.push_back(amount);
+			return true;
 		}
 
 		double get_all_debit() {
