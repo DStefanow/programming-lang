@@ -12,6 +12,8 @@ void withdraw_ammount();
 void get_account_handlers_with_more_than_one();
 void get_account_with_same();
 
+list<BankAccount> accounts = BankAccount::get_all_accounts();
+
 int main() {
 
 	menu();
@@ -58,15 +60,16 @@ BankAccount create_new_account() {
 	cin.ignore();
 	cin.getline(holder_name, sizeof(holder_name));
 
-	return BankAccount(holder_name);
+	BankAccount acc(holder_name);
+	accounts = BankAccount::get_all_accounts(); // Update the data from the file
+
+	return acc;
 }
 
 void get_all_accounts() {
-	list<BankAccount> accounts = BankAccount::get_all_accounts();
-
 	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
 		printf("ID:%s - Holder: %s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
-			acc->get_unique_code(), acc->get_holder_name(), acc->get_all_debit(), acc->get_all_credit());
+			acc->get_unique_code(), acc->get_holder_name(), acc->get_total_debit(), acc->get_total_credit());
 	}
 }
 
@@ -83,12 +86,9 @@ void insert_ammount() {
 	cout << "Enter Amount:";
 	cin >> amount;
 
-	list<BankAccount> accounts = BankAccount::get_all_accounts();
-
 	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
 		if (strcmp(unique_code, acc->get_unique_code()) == 0) {
 			acc->insert_amount(amount);
-			acc->print_info();
 		}
 	}
 }
