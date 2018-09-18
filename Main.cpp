@@ -94,7 +94,42 @@ void insert_ammount() {
 }
 
 void withdraw_ammount() {
-	// TODO ...
+	char unique_code[7];
+	double amount;
+
+	// Get the account ID from the stdin
+	cout << "-- WITHDRAW --\nEnter ID:";
+	cin.ignore();
+	cin.get(unique_code, 7);
+
+	// Get the amount from stdin
+	cout << "Enter Amount:";
+	cin >> amount;
+
+	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
+		if (strcmp(unique_code, acc->get_unique_code()) == 0) {
+			acc->withdraw_amount(amount);
+		}
+	}
+}
+
+void get_account_balance() {
+	char unique_code[7];
+	double balance = 0.0;
+
+	// Get the account ID from the stdin
+	cout << "Enter ID:";
+	cin.ignore();
+	cin.get(unique_code, 7);
+
+	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
+		if (strcmp(unique_code, acc->get_unique_code()) == 0) {
+			balance = acc->get_total_debit() - acc->get_total_credit();
+
+			printf("\nTotal Debit: %lf\nTotal Credit: %lf\nBalance: %lf\n\n",
+				acc->get_total_debit(), acc->get_total_credit(), balance);
+		}
+	}
 }
 
 void get_account_handlers_with_more_than_one() {
