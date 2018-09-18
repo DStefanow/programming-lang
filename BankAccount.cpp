@@ -100,6 +100,8 @@ class BankAccount {
 
 			debit.push_back(amount);
 			this->total_debit += amount;
+			insert_data_for_transaction(1, amount);
+
 			return true;
 		}
 
@@ -110,7 +112,22 @@ class BankAccount {
 
 			credit.push_back(amount);
 			this->total_credit += amount;
+			insert_data_for_transaction(2, amount);
+
 			return true;
+		}
+
+		// Type is used for debit/credit 1 - debit, other value - credit
+		void insert_data_for_transaction(int type, double amount) {
+			string file_ext = ".txt"; // Used for file extension
+			string transaction_type = (type == 1) ? "Debit: " : "Credit: ";
+
+			// Write info in the text file with filename - the ID of the holder
+			string file_name = file_ext.insert(0, this->get_unique_code());
+			ofstream log(file_name.c_str(), ofstream::out | ofstream::app);
+			log << transaction_type << amount << endl;
+
+			return;
 		}
 
 		double get_total_debit() {
