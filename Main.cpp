@@ -71,7 +71,26 @@ void get_all_accounts() {
 }
 
 void insert_ammount() {
-	// TODO ..
+	char unique_code[7];
+	double amount;
+
+	// Get the account ID from the stdin
+	cout << "Enter ID:";
+	cin.ignore();
+	cin.get(unique_code, 7);
+
+	// Get the amount from stdin
+	cout << "Enter Amount:";
+	cin >> amount;
+
+	list<BankAccount> accounts = BankAccount::get_all_accounts();
+
+	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
+		if (strcmp(unique_code, acc->get_unique_code()) == 0) {
+			acc->insert_amount(amount);
+			acc->print_info();
+		}
+	}
 }
 
 void withdraw_ammount() {
