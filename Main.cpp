@@ -11,7 +11,6 @@ void insert_ammount();
 void withdraw_ammount();
 void get_account_balance();
 void get_account_handlers_with_more_than_one();
-void get_account_with_same();
 
 list<BankAccount> accounts = BankAccount::get_all_accounts();
 
@@ -137,7 +136,4 @@ void get_account_balance() {
 
 void get_account_handlers_with_more_than_one() {
 	// TODO ..
-}
-void get_account_with_same() {
-	// TODO ...
 }
