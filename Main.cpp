@@ -9,6 +9,7 @@ BankAccount create_new_account();
 void get_all_accounts();
 void insert_ammount();
 void withdraw_ammount();
+void get_account_balance();
 void get_account_handlers_with_more_than_one();
 void get_account_with_same();
 
@@ -27,8 +28,9 @@ void menu() {
 	cout << "2) Get all accounts" << endl;
 	cout << "3) Insert amount in account by ID" << endl;
 	cout << "4) Withdraw amount in account by ID" << endl;
-	cout << "5) Get account handlers that have more than one account" << endl;
-	cout << "6) Get all bank accounts with same amount of withdraw/income amounts in text format" << endl;
+	cout << "5) Get account balance by ID" << endl;
+	cout << "6) Get account handlers that have more than one account" << endl;
+	cout << "7) Get all bank accounts with same amount of withdraw/income amounts in text format" << endl;
 	cout << "0) For Exit." << endl;
 
 	int option; // Used for user choice
@@ -45,8 +47,9 @@ void menu() {
 			case 2: get_all_accounts(); break;
 			case 3: insert_ammount(); break;
 			case 4: withdraw_ammount(); break;
-			case 5: get_account_handlers_with_more_than_one(); break;
-			case 6: get_account_with_same(); break;
+			case 5: get_account_balance(); break;
+			case 6: get_account_handlers_with_more_than_one(); break;
+			case 7: get_account_with_same(); break;
 			default : cout << "Wrong option!\n"; break;
 		}
 	}
