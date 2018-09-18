@@ -78,7 +78,7 @@ void insert_ammount() {
 	double amount;
 
 	// Get the account ID from the stdin
-	cout << "Enter ID:";
+	cout << "-- INSERT --\nEnter ID:";
 	cin.ignore();
 	cin.get(unique_code, 7);
 
