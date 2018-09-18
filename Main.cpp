@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <map>
 #include "core.h"
 
 void menu();
@@ -28,8 +29,7 @@ void menu() {
 	cout << "3) Insert amount in account by ID" << endl;
 	cout << "4) Withdraw amount in account by ID" << endl;
 	cout << "5) Get account balance by ID" << endl;
-	cout << "6) Get account handlers that have more than one account" << endl;
-	cout << "7) Get all bank accounts with same amount of withdraw/income amounts in text format" << endl;
+	cout << "6) Get all bank accounts with same amount of withdraw/income amounts in text format" << endl;
 	cout << "0) For Exit." << endl;
 
 	int option; // Used for user choice
@@ -48,7 +48,6 @@ void menu() {
 			case 4: withdraw_ammount(); break;
 			case 5: get_account_balance(); break;
 			case 6: get_account_handlers_with_more_than_one(); break;
-			case 7: get_account_with_same(); break;
 			default : cout << "Wrong option!\n"; break;
 		}
 	}
@@ -135,5 +134,16 @@ void get_account_balance() {
 }
 
 void get_account_handlers_with_more_than_one() {
-	// TODO ..
+	map<string, int> acc_info;
+
+	// Populate the info Hash Map
+	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
+		acc_info[acc->get_holder_name()] = acc_info[acc->get_holder_name()] + 1; // Increase the number
+	}
+
+	for (map<string, int>::iterator it = acc_info.begin(); it != acc_info.end(); ++it) {
+		if (it->second > 1) { // Compare by value
+			printf("Holder: %s has %d bank accounts!\n", it->first.c_str(), it->second);
+		}
+	}
 }
