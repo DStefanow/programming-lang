@@ -97,8 +97,9 @@ class BankAccount {
 			if (amount <= 0.0) {
 				return false;
 			}
-			cout << "Going to push: " << amount << endl;
+
 			debit.push_back(amount);
+			this->total_debit += amount;
 			return true;
 		}
 
@@ -106,32 +107,24 @@ class BankAccount {
 			if (amount <= 0.0) {
 				return false;
 			}
+
 			credit.push_back(amount);
+			this->total_credit += amount;
 			return true;
 		}
 
-		double get_all_debit() {
-			list<double>::iterator curr;
-			for (curr = debit.begin(); curr != debit.end(); ++curr) {
-				this->total_debit += *curr;
-			}
-
+		double get_total_debit() {
 			return this->total_debit;
 		}
 
-		double get_all_credit() {
-			list<double>::iterator curr;
-			for (curr = credit.begin(); curr != credit.end(); ++curr) {
-				this->total_credit += *curr;
-			}
-
+		double get_total_credit() {
 			return this->total_credit;
 		}
 
 		// Ovveride << to serialize and write Bank Account object in file
 		friend std::ostream & operator << (std::ostream &out_file, BankAccount &acc) {
 			out_file << acc.get_unique_code() << " - " << acc.get_holder_name() <<
-			" - " <<  acc.get_all_debit() << " - " << acc.get_all_credit() <<endl;
+			" - " <<  acc.total_debit << " - " << acc.total_credit <<endl;
 			return out_file;
 		}
 
@@ -164,6 +157,6 @@ class BankAccount {
 
 		void print_info() {
 			printf("Account with ID: %s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
-				this->get_unique_code(), this->get_all_debit(), this->get_all_credit());
+				this->get_unique_code(), this->total_debit, this->total_credit);
 		}
 };
