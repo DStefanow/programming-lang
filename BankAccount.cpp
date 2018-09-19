@@ -173,7 +173,8 @@ class BankAccount {
 		}
 
 		void print_info() {
-			printf("Account with ID: %s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
-				this->get_unique_code(), this->total_debit, this->total_credit);
+			printf("Account with ID: %s\nHolder:%s\nTotal Debit: %lf\nTotal Credit:%lf\n\n",
+				this->get_unique_code(), this->get_holder_name(),
+				this->total_debit, this->total_credit);
 		}
 };
