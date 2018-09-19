@@ -98,4 +98,32 @@ class ComponentInfo {
 			return out_file;
 		}
 
+
+		static list<ComponentInfo> get_all_components() {
+			list<ComponentInfo> components;
+			int pos = 0; // Position for the current line
+			int i = 0; // Used by the token array
+			string line = "";
+			string tokens[6];
+			string delimiter = " - "; // Delimiter in the file
+
+			ifstream in_file(COMP_FILE);
+			while (getline(in_file, line)) {
+				istringstream iss(line); // get the line as string
+
+				i = 0;
+				while ((pos = line.find(delimiter)) != string::npos) {
+					tokens[i] = line.substr(0, pos); // Add every part
+					line.erase(0, pos + delimiter.length()); // Erase to the next delimiter
+
+					i++;
+				}
+
+				tokens[i] = line; // Add the last part
+				components.push_back(ComponentInfo(tokens));
+			}
+
+			return components;
+		}
+
 };
