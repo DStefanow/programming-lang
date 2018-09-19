@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <iostream>
 #include <sstream>
 #include <list>
@@ -126,4 +127,9 @@ class ComponentInfo {
 			return components;
 		}
 
+		void print_info() {
+			printf("Component with nomenclature: %s\nName:%s\nProperties:%lf - %s\nCountry:%s\nPrice:%lf\n",
+				this->get_nomenclature_number(), this->get_name(), this->get_value(), this->get_unit(),
+				this->factory_info.get_country(), this->factory_info.get_price());
+		}
 };
