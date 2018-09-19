@@ -1,0 +1,22 @@
+1. Component:
+	1.1. Properties:
+		1.1.1. nomenclature_number - char*;
+		1.1.2. name - char*;
+		1.1.3. value - double;
+		1.1.4. unit - char*;
+		1.1.5. facotry_info - object from class FactoryInfo;
+
+	1.2. Constructor and Destructors:
+		1.2.1. Empty base constructor;
+		1.2.2. Main constructor with properties from 1.1.;
+		1.2.3. Destructor - empty body;
+
+	1.3. Again list with objects like the previous task;
+	1.4. friend class for writing data;
+	1.6. get_all_capacitor_in_given_range - use the list of elements;
+	1.5. print_info class;
+
+2. FactoryInfo:
+	2.1. Properties:
+		2.1.1. country - char*;
+		2.1.2. price - double;
