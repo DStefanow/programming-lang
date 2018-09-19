@@ -60,7 +60,9 @@ class ComponentInfo {
 		// Ovveride << to serialize and write Bank Account object in file
 		friend std::ostream & operator << (std::ostream &out_file, ComponentInfo &component) {
 			out_file << component.get_nomenclature_number() << " - " << component.get_name() <<
-			" - " <<  component.get_value() << " - " << component.get_unit() << endl;
+			" - " <<  component.get_value() << " - " << component.get_unit() << " - " <<
+			component.get_factory_info().get_country() << " - " << component.get_factory_info().get_price()
+			<< endl;
 			return out_file;
 		}
 
