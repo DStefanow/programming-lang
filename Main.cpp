@@ -8,8 +8,8 @@
 void menu();
 BankAccount create_new_account();
 void get_all_accounts();
-void insert_ammount();
-void withdraw_ammount();
+void insert_amount();
+void withdraw_amount();
 void get_account_balance();
 void get_account_handlers_with_more_than_one();
 
@@ -44,8 +44,8 @@ void menu() {
 		switch (option) {
 			case 1: create_new_account(); break;
 			case 2: get_all_accounts(); break;
-			case 3: insert_ammount(); break;
-			case 4: withdraw_ammount(); break;
+			case 3: insert_amount(); break;
+			case 4: withdraw_amount(); break;
 			case 5: get_account_balance(); break;
 			case 6: get_account_handlers_with_more_than_one(); break;
 			default : cout << "Wrong option!\n"; break;
@@ -74,7 +74,7 @@ void get_all_accounts() {
 	}
 }
 
-void insert_ammount() {
+void insert_amount() {
 	char unique_code[7];
 	double amount;
 
@@ -94,7 +94,7 @@ void insert_ammount() {
 	}
 }
 
-void withdraw_ammount() {
+void withdraw_amount() {
 	char unique_code[7];
 	double amount;
 
