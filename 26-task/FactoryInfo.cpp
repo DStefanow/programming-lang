@@ -6,7 +6,7 @@ using namespace std;
 
 class FactoryInfo {
 	private:
-		char* country;
+		char *country;
 		double price;
 
 	public:
@@ -14,7 +14,7 @@ class FactoryInfo {
 			cout << "Created empty object from class FactoryInfo" << endl;
 		}
 
-		FactoryInfo(char* country, double price) {
+		FactoryInfo(char *country, double price) {
 			this->country = country;
 			this->price = price;
 		}
