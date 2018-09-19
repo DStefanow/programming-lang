@@ -1,6 +1,8 @@
 #include <iostream>
-
+#include <sstream>
 #include "fact.h"
+
+#define COMP_FILE "components.txt"
 
 using namespace std;
 
@@ -24,6 +26,13 @@ class ComponentInfo {
 			this->unit = unit;
 			FactoryInfo fi(country, price);
 			this->factory_info= fi;
+
+			// Write the information about the current account in accounts file
+			ofstream out_file;
+			out_file.open(COMP_FILE, ofstream::out | ofstream::app);
+			out_file << *this;
+			out_file.close();
+
 		}
 
 		~ComponentInfo() {}
@@ -47,4 +56,12 @@ class ComponentInfo {
 		FactoryInfo get_factory_info() {
 			return this->factory_info;
 		}
+
+		// Ovveride << to serialize and write Bank Account object in file
+		friend std::ostream & operator << (std::ostream &out_file, ComponentInfo &component) {
+			out_file << component.get_nomenclature_number() << " - " << component.get_name() <<
+			" - " <<  component.get_value() << " - " << component.get_unit() << endl;
+			return out_file;
+		}
+
 };
