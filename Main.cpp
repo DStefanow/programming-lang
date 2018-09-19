@@ -134,6 +134,7 @@ void get_account_balance() {
 
 void get_account_handlers_with_more_than_one() {
 	map<string, int> acc_info;
+	bool is_missing_holders = true;
 
 	// Populate the info Hash Map
 	for (list<BankAccount>::iterator acc = accounts.begin(); acc != accounts.end(); acc++) {
@@ -143,6 +144,11 @@ void get_account_handlers_with_more_than_one() {
 	for (map<string, int>::iterator it = acc_info.begin(); it != acc_info.end(); ++it) {
 		if (it->second > 1) { // Compare by value
 			printf("Holder: %s has %d bank accounts!\n", it->first.c_str(), it->second);
+			is_missing_holders = false;
 		}
+	}
+
+	if (is_missing_holders) {
+		cout << "(No holders with more than one account)" << endl;
 	}
 }
