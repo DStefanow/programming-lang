@@ -1,5 +1,9 @@
 #include <iostream>
 #include <sstream>
+#include <list>
+#include <cstdlib>
+#include <string>
+#include <cstring>
 #include "fact.h"
 
 #define COMP_FILE "components.txt"
@@ -34,6 +38,34 @@ class ComponentInfo {
 			out_file.close();
 
 		}
+
+		ComponentInfo(string *tokens) {
+			// Copy the nomenclature number
+			char *nom = new char[tokens[0].length() + 1];
+			strcpy(nom, tokens[0].c_str());
+			this->nomenclature_number = nom;
+
+			// Copy the name
+			char *name = new char[tokens[1].length() + 1];
+			strcpy(name, tokens[1].c_str());
+			this->name = name;
+
+			this->value = atof(tokens[2].c_str());
+
+			// Copy the unit
+			char *unit = new char[tokens[3].length() + 1];
+			strcpy(unit, tokens[3].c_str());
+			this->unit = unit;
+
+			// Copy the country and price
+			char *country = new char[tokens[4].length() + 1];
+			strcpy(unit, tokens[4].c_str());
+			double price = atof(tokens[5].c_str());
+			FactoryInfo fi(country, price);
+			this->factory_info = fi;
+
+		}
+
 
 		~ComponentInfo() {}
 
