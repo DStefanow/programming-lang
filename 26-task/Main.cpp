@@ -13,6 +13,7 @@ void get_all_capacitors_in_given_range();
 list<ComponentInfo> components = ComponentInfo::get_all_components();
 
 int main() {
+	menu();
 
 	return 0;
 }
@@ -45,11 +46,46 @@ void menu() {
 }
 
 ComponentInfo create_new_component() {
-	// TODO ...
+	// Properties
+	char nomenclature_number[10];
+	char name[24];
+	double value;
+	char unit[24];
+	char country[24];
+	double price;
+
+	cout << "Enter nomenclature number (max 10 symbols): ";
+	cin.ignore();
+	cin.get(nomenclature_number, sizeof(nomenclature_number));
+
+	cout << "Enter name (max 24 symbols): ";
+	cin.ignore();
+	cin.get(name, sizeof(name));
+
+	cout << "Enter value: ";
+	cin >> value;
+
+	cout << "Enter unit (max 24 symbols): ";
+	cin.ignore();
+	cin.get(unit, sizeof(unit));
+
+	cout << "Enter country (max 24 symbols): ";
+	cin.ignore();
+	cin.get(country, sizeof(country));
+
+	cout << "Enter price: ";
+	cin >> price;
+
+	ComponentInfo component(nomenclature_number, name, value, unit, country, price);
+	components = ComponentInfo::get_all_components(); // Update list
+
+	return component;
 }
 
 void get_all_components() {
-	// TODO ...
+	for(list<ComponentInfo>::iterator component = components.begin(); component != components.end(); component++) {
+		component->print_info();
+	}
 }
 
 void delete_component() {
