@@ -20,4 +20,12 @@ class FactoryInfo {
 		}
 
 		~FactoryInfo() {}
+
+		char *get_country() {
+			return this->country;
+		}
+
+		double get_price() {
+			return this->price;
+		}
 };
