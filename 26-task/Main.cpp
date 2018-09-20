@@ -96,12 +96,18 @@ void delete_component() {
 	cin.get(nom, sizeof(nom));
 
 	ComponentInfo::delete_component_by_nomenclature(nom);
+	components = ComponentInfo::get_all_components(); // Update list
 }
 
 void get_all_capacitors_in_given_range() {
+	char el_name[24];
 	char unit_type[10];
 	double down_range;
 	double up_range;
+
+	cout << "Enter element name: ";
+	cin.ignore();
+	cin.get(el_name, sizeof(el_name));
 
 	cout << "Enter type of unit: ";
 	cin.ignore();
@@ -114,8 +120,9 @@ void get_all_capacitors_in_given_range() {
 	cin >> up_range;
 
 	for(list<ComponentInfo>::iterator component = components.begin(); component != components.end(); component++) {
-		if ((strcmp(component->get_unit(), unit_type) == 0) && (component->get_value() >= down_range && component->get_value() <= up_range)) {
-			component->print_info();
+		if ((strcmp(component->get_name(), el_name) == 0) && (strcmp(component->get_unit(), unit_type) == 0) &&
+			(component->get_value() >= down_range && component->get_value() <= up_range)) {
+				component->print_info();
 		}
 	}
 }
