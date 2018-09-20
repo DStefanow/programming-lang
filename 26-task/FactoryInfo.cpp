@@ -1,7 +1,5 @@
 #include <iostream>
 
-#define ACC_FILE "accounts.txt"
-
 using namespace std;
 
 class FactoryInfo {
