@@ -130,7 +130,6 @@ class ComponentInfo {
 		}
 
 		static void delete_component_by_nomenclature(char *nomenclature) {
-			string tmp_path = "tmp.txt";
 			int pos = 0; // Position for the current line
 			string line = "";
 			string element;
@@ -138,7 +137,7 @@ class ComponentInfo {
 
 			ifstream in_file(COMP_FILE);
 			std::ofstream tmp_file;
-			tmp_file.open(tmp_path);
+			tmp_file.open("tmp.txt");
 
 			while (getline(in_file, line)) {
 				istringstream iss(line); // get the line as string
@@ -158,7 +157,9 @@ class ComponentInfo {
 			// Replace the file
 			const char *path = COMP_FILE;
 			remove(path);
-			rename(tmp_path, path);
+			rename("tmp.txt", path);
+
+			cout << "Successfully deleted element!" << endl;
 		}
 
 		void print_info() {
