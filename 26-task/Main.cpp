@@ -93,5 +93,23 @@ void delete_component() {
 }
 
 void get_all_capacitors_in_given_range() {
-	// TODO ...
+	char unit_type[10];
+	double down_range;
+	double up_range;
+
+	cout << "Enter type of unit: ";
+	cin.ignore();
+	cin.get(unit_type, sizeof(unit_type));
+
+	cout << "Enter down range: ";
+	cin >> down_range;
+
+	cout << "Enter up range: ";
+	cin >> up_range;
+
+	for(list<ComponentInfo>::iterator component = components.begin(); component != components.end(); component++) {
+		if ((strcmp(component->get_unit(), unit_type) == 0) && (component->get_value() >= down_range && component->get_value() <= up_range)) {
+			component->print_info();
+		}
+	}
 }
