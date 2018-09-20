@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <list>
 #include <cstdlib>
@@ -126,6 +127,38 @@ class ComponentInfo {
 			}
 
 			return components;
+		}
+
+		static void delete_component_by_nomenclature(char *nomenclature) {
+			string tmp_path = "tmp.txt";
+			int pos = 0; // Position for the current line
+			string line = "";
+			string element;
+			string delimiter = " - "; // Delimiter in the file
+
+			ifstream in_file(COMP_FILE);
+			std::ofstream tmp_file;
+			tmp_file.open(tmp_path);
+
+			while (getline(in_file, line)) {
+				istringstream iss(line); // get the line as string
+
+				pos = line.find(delimiter);
+				element = line.substr(0, pos);
+
+				// Add the line to the tmp file
+				if (strcmp(nomenclature, element.c_str()) != 0) {
+					tmp_file << line << endl;
+				}
+			}
+
+			in_file.close();
+			tmp_file.close();
+
+			// Replace the file
+			const char *path = COMP_FILE;
+			remove(path);
+			rename(tmp_path, path);
 		}
 
 		void print_info() {
