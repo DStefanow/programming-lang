@@ -10,9 +10,7 @@ class FactoryInfo {
 		double price;
 
 	public:
-		FactoryInfo() {
-			cout << "Created empty object from class FactoryInfo" << endl;
-		}
+		FactoryInfo() {}
 
 		FactoryInfo(char *country, double price) {
 			this->country = country;
