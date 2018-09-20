@@ -89,7 +89,13 @@ void get_all_components() {
 }
 
 void delete_component() {
-	// TODO ...
+	char nom[10];
+
+	cout << "Enter nomenclature number: ";
+	cin.ignore();
+	cin.get(nom, sizeof(nom));
+
+	ComponentInfo::delete_component_by_nomenclature(nom);
 }
 
 void get_all_capacitors_in_given_range() {
