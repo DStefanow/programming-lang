@@ -60,8 +60,9 @@ class ComponentInfo {
 
 			// Copy the country and price
 			char *country = new char[tokens[4].length() + 1];
-			strcpy(unit, tokens[4].c_str());
+			strcpy(country, tokens[4].c_str());
 			double price = atof(tokens[5].c_str());
+
 			FactoryInfo fi(country, price);
 			this->factory_info = fi;
 
@@ -128,7 +129,7 @@ class ComponentInfo {
 		}
 
 		void print_info() {
-			printf("Component with nomenclature: %s\nName:%s\nProperties:%lf - %s\nCountry:%s\nPrice:%lf\n",
+			printf("Component with nomenclature: %s\nName:%s\nProperties:%lf - %s\nCountry:%s\nPrice:%lf\n\n\n",
 				this->get_nomenclature_number(), this->get_name(), this->get_value(), this->get_unit(),
 				this->factory_info.get_country(), this->factory_info.get_price());
 		}
